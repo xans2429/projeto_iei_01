@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  dev:
+    build:
+      context: .
+      args:
+        UID: ${LOCAL_UID:-1000}
+        GID: ${LOCAL_GID:-1000}
+    volumes:
+      - ./:/workspace:delegated
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
+    command: ["sleep", "infinity"]
+    environment:
+      - PYTHONPATH=/workspace
